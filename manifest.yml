@@ -1,0 +1,6 @@
+---
+applications:
+- name: baby-app
+  memory: 256M
+  env:
+    GOPACKAGENAME: github.com/kieron-pivotal/baby-app
