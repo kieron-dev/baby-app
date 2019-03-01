@@ -18,7 +18,7 @@ func main() {
 	initDB()
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		row := conn.QueryRow("select current_timestamp")
+		row := conn.QueryRow("select name from foo where id=$1", 1)
 		var t string
 		err := row.Scan(&t)
 		if err != nil {
