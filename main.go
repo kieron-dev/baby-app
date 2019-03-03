@@ -25,7 +25,7 @@ func main() {
 			log.Fatal(err)
 		}
 
-		fmt.Fprintf(w, "%s: Hello, %s\n", t, r.UserAgent())
+		fmt.Fprintf(w, "<div id='app'>%s: Hello, %s</div>\n", t, r.UserAgent())
 	})
 	port := os.Getenv("PORT")
 	if port == "" {

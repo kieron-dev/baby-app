@@ -29,6 +29,6 @@ var _ = Describe("Skeleton", func() {
 		Expect(url).ToNot(BeEmpty())
 
 		Expect(page.Navigate(url)).To(Succeed())
-		Eventually(page.FindByName("q")).Should(BeFound())
+		Eventually(page.FindByID("app")).Should(HaveText("hello, world"))
 	})
 })
