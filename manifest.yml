@@ -4,3 +4,4 @@ applications:
   memory: 64M
   env:
     GOPACKAGENAME: github.com/kieron-pivotal/baby-app
+    CORS_ORIGIN: https://baby-app.cfapps.io

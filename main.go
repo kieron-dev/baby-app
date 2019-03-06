@@ -13,20 +13,32 @@ import (
 
 var conn *sql.DB
 
+type Hello struct {
+	Name string `json:"name"`
+}
+
 func main() {
 
 	initDB()
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		row := conn.QueryRow("select name from foo where id=$1", 1)
-		var t string
-		err := row.Scan(&t)
+		var t Hello
+		err := row.Scan(&t.Name)
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		fmt.Fprintf(w, "<div id='app'>%s: Hello, %s</div>\n", t, r.UserAgent())
+		out, err := json.Marshal(t)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		origin := os.Getenv("CORS_ORIGIN")
+		w.Header().Set("Access-Control-Allow-Origin", origin)
+		fmt.Fprint(w, string(out))
 	})
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8000"
