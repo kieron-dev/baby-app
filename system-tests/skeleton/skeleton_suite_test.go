@@ -22,7 +22,7 @@ var _ = BeforeSuite(func() {
 	// agoutiDriver = agouti.Selenium()
 	agoutiDriver = agouti.ChromeDriver(
 		agouti.ChromeOptions("args", []string{
-			"--headless", "--disable-gpu",
+			"--no-sandbox", "--disable-gpu",
 		}),
 	)
 
